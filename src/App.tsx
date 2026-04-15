@@ -865,7 +865,7 @@ const AboutPage = () => (
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">關於我們</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">關於我們 About Us</h1>
           <p className="text-xl md:text-2xl font-light text-blue-100 max-w-3xl mx-auto leading-relaxed">
             寶德保健世家 Bode 品質代名詞
           </p>
@@ -873,86 +873,202 @@ const AboutPage = () => (
       </div>
     </section>
 
-    {/* Main Intro */}
+    {/* New Top Section: Sustainable Quality */}
     <section className="py-24 bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">德國進口，頂級藥廠製造</h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto mb-8"></div>
-          <p className="text-lg text-gray-600 leading-relaxed mb-8">
-            提供高品質的成份，頂級原料、專業合宜的配方及劑量，讓使用寶德產品的人可以得到最大的好處，並符合他們對健康生活的期待。
-          </p>
-          <p className="text-lg text-gray-600 leading-relaxed">
-            寶德從 1967 年在德國創立至今，已有超過 50 年信譽卓著，以口碑著稱。您的謹慎選擇，守護您和您全家人的健康。
-          </p>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-20">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+            永續經營、用心製造的優質保健品
+          </h2>
+          <h3 className="text-xl md:text-2xl font-bold text-blue-600 mb-10">
+            歐洲進口，頂級藥廠製造 – 秉持「堅持品質、永續經營」的企業文化
+          </h3>
+          <div className="space-y-6 text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto">
+            <p>
+              提供高品質的成份，頂級原料、專業合宜的配方及劑量，讓使用寶德產品的人可以得到最大的好處，並符合他們對健康生活的期待。
+            </p>
+            <p>
+              寶德從 1966 年創立至今，超過 60 年信譽卓著，以口碑著稱。您的謹慎選擇，守護您和您全家人的健康。
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <motion.div 
-            whileHover={{ y: -5 }}
-            className="p-8 rounded-3xl bg-gray-50 border border-gray-100"
-          >
-            <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white mb-6 shadow-lg shadow-blue-200">
-              <Globe size={24} />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">寶德品牌的理念</h3>
+          <div className="p-10 rounded-[2.5rem] bg-gray-50 border border-gray-100 hover:shadow-xl hover:shadow-blue-500/5 transition-all">
+            <h4 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+              <div className="w-2 h-8 bg-blue-600 rounded-full mr-4"></div>
+              寶德品牌理念 – 唯有堅持品質，才能永續經營
+            </h4>
             <p className="text-gray-600 leading-relaxed">
               寶德始終堅持最高品質哲學要求，並不斷研發及技術改良，所以寶德高品質的形象與聲譽，也因使用者口耳相傳的力量，傳到世界各個角落。
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div 
-            whileHover={{ y: -5 }}
-            className="p-8 rounded-3xl bg-gray-50 border border-gray-100"
-          >
-            <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white mb-6 shadow-lg shadow-blue-200">
-              <ShieldCheck size={24} />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">寶德的承諾</h3>
+          <div className="p-10 rounded-[2.5rem] bg-gray-50 border border-gray-100 hover:shadow-xl hover:shadow-blue-500/5 transition-all">
+            <h4 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+              <div className="w-2 h-8 bg-blue-600 rounded-full mr-4"></div>
+              寶德承諾 – 嚴選原料及優良製造技術
+            </h4>
             <p className="text-gray-600 leading-relaxed">
-              嚴選優質原料及優良製造廠是寶德最基本的堅持，我們的製造廠通過美國聯邦藥物食品管理局和歐盟衛生局定期查核，皆符合藥物食品製造安全規範標準的藥廠製造寶德產品，是我們要求高品質的第一步。有歐美衛生局把關，您可以安心。
+              嚴選優質原料及優良製造廠是寶德最基本的堅持，我們的製造廠通過美國聯邦藥物食品管理局或歐盟衛生局定期查核，皆符合藥物食品製造安全規範標準的藥廠製造寶德產品，是我們要求高品質的第一步。
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div 
-            whileHover={{ y: -5 }}
-            className="p-8 rounded-3xl bg-gray-50 border border-gray-100"
-          >
-            <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white mb-6 shadow-lg shadow-blue-200">
-              <CheckCircle2 size={24} />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">寶德的道德</h3>
+          <div className="p-10 rounded-[2.5rem] bg-gray-50 border border-gray-100 hover:shadow-xl hover:shadow-blue-500/5 transition-all">
+            <h4 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+              <div className="w-2 h-8 bg-blue-600 rounded-full mr-4"></div>
+              理想的配方和劑量 – 唯有良心事業，才能共創優質健康人生
+            </h4>
             <p className="text-gray-600 leading-relaxed">
               營養專家針對不同族群的需求，調配適合各族群配方的系列產品，成分完整，含量適當。所以寶德推出專業配方、價格合理的產品，與您共創優質的健康人生。
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div 
-            whileHover={{ y: -5 }}
-            className="p-8 rounded-3xl bg-gray-50 border border-gray-100"
-          >
-            <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white mb-6 shadow-lg shadow-blue-200">
-              <Clock size={24} />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">種類齊全，完整均衡</h3>
+          <div className="p-10 rounded-[2.5rem] bg-gray-50 border border-gray-100 hover:shadow-xl hover:shadow-blue-500/5 transition-all">
+            <h4 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+              <div className="w-2 h-8 bg-blue-600 rounded-full mr-4"></div>
+              產品種類齊全，提供完整的營養補充
+            </h4>
             <p className="text-gray-600 leading-relaxed">
-              寶德系列產品種類齊全，選用軟膠囊劑型的單方或複方產品，適合照顧全家人的健康，繁忙的上班族、操勞家庭主婦的日常保健，或銀髮族的營養補給。
+              寶德系列產品種類齊全，能迎合各年齡和需求的營養需求。無論大人、小孩、繁忙的上班族、操勞家庭主婦的或銀髮族的營養補給都能獲得適當的產品。
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
 
-    {/* Image Section */}
+    {/* Bode Beauté Skin Care Section */}
+    <section className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row items-center gap-16">
+          <div className="lg:w-1/2">
+            <h2 className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color: COLORS.secondary }}>Bode Beauté</h2>
+            <h3 className="text-4xl font-bold text-gray-900 mb-8 leading-tight">
+              寶麗美膚保養系列
+            </h3>
+            <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
+              <p>
+                Bode Beauté 寶麗軟膠囊保養品研究室在瑞士的 Cham Switzerland。我們的保養品製造廠擁有強大的實驗室與科學家，隨時提供客戶最好的科技產品。
+              </p>
+              <p>
+                Bode Beauté 寶麗致力於高科技護膚產品之開發，在不斷研發的專屬實驗室，擁有許多世界專利，產品使用的 Vegicaps® 和 Microsponge® 為最新專利科技，運用在保養品上，讓你感受極緻專業的保養品。
+              </p>
+              <p>
+                Bode Beauté 寶麗軟膠囊是用獨特的 Vegicaps® 包材、封裝技術。Vegicaps® 只用植物性的原料製作，沒有任何動物殘留，讓您用得更安心。
+              </p>
+              <p>
+                無菌真空包裝技術，完整保存保養品的活性，讓每顆膠囊就像一瓶新開的保養品一樣，不會遭到外界汙染或氧化。
+              </p>
+              <p>
+                Bode 的製造廠在生產過程的每一步驟，都嚴格要求，達到最高標準，其製造過程都在乾淨的無塵環境裡使用先進的現代設備製造，並通過歐盟以及美國 FDA 的認可，因此保證每一顆軟膠囊的品質都是最好的。
+              </p>
+            </div>
+          </div>
+          <div className="lg:w-1/2">
+            <img 
+              src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=800&auto=format&fit=crop" 
+              alt="Bode Beauté Skin Care" 
+              className="rounded-[3rem] shadow-2xl w-full h-auto"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Softgel Advantages Section */}
     <section className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-[3rem] overflow-hidden shadow-2xl">
-          <img 
-            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1920&auto=format&fit=crop" 
-            alt="Quality Control" 
-            className="w-full h-[500px] object-cover"
-            referrerPolicy="no-referrer"
-          />
+        <div className="text-center mb-16">
+          <h2 className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color: COLORS.secondary }}>Bode 軟膠囊</h2>
+          <h3 className="text-4xl font-bold text-gray-900 mb-6">劑型優勢</h3>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            軟膠囊比傳統錠劑或硬膠囊的吸收度高，所以人體更能有效利用。
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+            <div className="text-blue-600 mb-4 font-bold text-lg">‧ 較高的生體可用率</div>
+            <p className="text-gray-500 text-sm">Better total bioavailability (AUC)</p>
+          </div>
+          <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+            <div className="text-blue-600 mb-4 font-bold text-lg">‧ 較快的吸收速率</div>
+            <p className="text-gray-500 text-sm">More rapid rate of absorption (tmax)</p>
+          </div>
+          <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+            <div className="text-blue-600 mb-4 font-bold text-lg">‧ 較高的血液濃度</div>
+            <p className="text-gray-500 text-sm">Higher blood levels (Cmax)</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-gray-600 leading-relaxed">
+          <div className="space-y-6">
+            <div className="flex items-start space-x-4">
+              <CheckCircle2 className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+              <p>利用高準確度的精密儀器，將有效成份均勻完全注入軟膠中，量當然精準。</p>
+            </div>
+            <div className="flex items-start space-x-4">
+              <CheckCircle2 className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+              <p>因軟膠囊有遮光及避免氧化的作用，所以可減少有效成份接觸光線或空氣的機會，因此穩定度較高。</p>
+            </div>
+            <div className="flex items-start space-x-4">
+              <CheckCircle2 className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+              <p>軟膠囊能遮掩藥味，所以不會像錠劑容易有藥味殘留於口腔內。</p>
+            </div>
+          </div>
+          <div className="space-y-6">
+            <div className="flex items-start space-x-4">
+              <CheckCircle2 className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+              <p>軟膠囊本身的明膠因遇水而溶解，能產生滑溜感，因此容易吞食。</p>
+            </div>
+            <div className="flex items-start space-x-4">
+              <CheckCircle2 className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+              <p>軟膠囊讓使用者服用方便、攜帶容易，因此接受度高。</p>
+            </div>
+            <div className="flex items-start space-x-4">
+              <CheckCircle2 className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+              <p>在日常生活中常常可以接觸到軟膠囊的產品，軟膠囊是一種固體劑型，將藥品或食品萃取物盛於軟質明膠殼內而製成。無論是藥品或保健類食品，都帶給人們很大的便利性。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Bode History Section */}
+    <section className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row gap-16">
+          <div className="lg:w-1/3">
+            <h2 className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color: COLORS.secondary }}>Bode 寶德歷史</h2>
+            <h3 className="text-4xl font-bold text-gray-900 mb-8 leading-tight">
+              傳承半世紀的<br />健康承諾
+            </h3>
+            <div className="p-8 bg-blue-600 rounded-3xl text-white">
+              <p className="text-lg font-medium leading-relaxed">
+                我們的維他命和保健品都是以健康為優先，只堅持使用業界最好的原料和藥品級的製程。
+              </p>
+            </div>
+          </div>
+          <div className="lg:w-2/3 space-y-8 text-lg text-gray-600 leading-relaxed">
+            <p>
+              Bode 寶德是臺灣歷史最悠久的德國進口維他命品牌，其中最著名的產品有 Vitop 頂維他綜合維他命、Preg 保麗能婦女維他命、EPSOL-S 維他命E 還有 Pamcap 頂級濃縮南瓜籽油。
+            </p>
+            <p>
+              林廷燦先生來自嘉義新港，他完成臺灣大學預科後就在他的家人、教授和朋友的支持下開始進口歐洲西藥和健康食品的行業。民國 53 年 (1964)，他在台北市寧靜的巷子內成立貿易公司，專門進口歐洲西藥、原料和醫療器材。林先生憑著他流利的外文和豐富的醫學知識積極去尋找歐洲頂級藥廠和原料廠。果然，在幾年的努力下，很幸運地能夠深厚認識了許多德國、瑞士和丹麥的藥廠。
+            </p>
+            <p>
+              50 年來我們延續了林廷燦先生醫學知識和對保健領域的熱誠：努力尋找最好的原料和製程給我們的忠實客戶。我們在設計保健品就猶如在照顧自己的家人，因此只有吃了有效、吃得健康、吃的安心的頂級產品才會拿出來和大家分享。我們一直相信，只有好的產品才能禁得起時間的考驗和長久滿足客戶對健康的期望。
+            </p>
+            <div className="pt-8">
+              <img 
+                src="https://picsum.photos/seed/history/1200/600" 
+                alt="Bode History" 
+                className="rounded-[3rem] shadow-xl w-full h-auto"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
