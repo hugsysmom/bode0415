@@ -172,7 +172,7 @@ const PRODUCTS: Product[] = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
 
   const menuItems = [
@@ -186,7 +186,15 @@ const Navbar = () => {
         { name: 'Bode Beauté 寶麗美膚保養', href: '/products?category=Skin Care' },
       ]
     },
-    { name: '關於我們', href: '/about' },
+    { 
+      name: '關於我們', 
+      href: '/about',
+      dropdown: [
+        { name: '品牌理念', href: '/about/philosophy' },
+        { name: '軟膠囊優勢', href: '/about/softgel' },
+        { name: '寶德歷史', href: '/about/history' },
+      ]
+    },
     { name: '最新消息', href: '/news' },
     { name: '常見問題', href: '/faq' },
     { name: '聯繫我們', href: '/contact' },
@@ -208,15 +216,15 @@ const Navbar = () => {
               <div 
                 key={item.name} 
                 className="relative group"
-                onMouseEnter={() => item.dropdown && setIsDropdownOpen(true)}
-                onMouseLeave={() => item.dropdown && setIsDropdownOpen(false)}
+                onMouseEnter={() => item.dropdown && setActiveDropdown(item.name)}
+                onMouseLeave={() => setActiveDropdown(null)}
               >
                 <Link
                   to={item.href}
                   className={`text-sm font-medium h-20 flex items-center transition-colors border-b-2 ${
-                    location.pathname === item.href 
+                    location.pathname.startsWith(item.href) && item.href !== '/'
                       ? 'text-blue-600 border-blue-600' 
-                      : 'text-gray-700 border-transparent hover:text-blue-600'
+                      : (location.pathname === item.href ? 'text-blue-600 border-blue-600' : 'text-gray-700 border-transparent hover:text-blue-600')
                   }`}
                 >
                   {item.name}
@@ -224,7 +232,7 @@ const Navbar = () => {
 
                 {item.dropdown && (
                   <AnimatePresence>
-                    {isDropdownOpen && (
+                    {activeDropdown === item.name && (
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -236,7 +244,7 @@ const Navbar = () => {
                             key={subItem.name}
                             to={subItem.href}
                             className="block px-6 py-4 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                            onClick={() => setIsDropdownOpen(false)}
+                            onClick={() => setActiveDropdown(null)}
                           >
                             {subItem.name}
                           </Link>
@@ -799,15 +807,15 @@ const ProductsPage = () => {
                     <div className="p-6">
                       <div className="flex flex-wrap gap-1 mb-3">
                         {product.effects.slice(0, 2).map(effect => (
-                          <span key={effect} className="px-2 py-0.5 bg-blue-50 text-blue-600 text-[10px] font-bold rounded">
+                          <span key={effect} className="px-2 py-0.5 bg-blue-50 text-blue-600 text-[10px] font-bold rounded-full">
                             {effect}
                           </span>
                         ))}
                       </div>
-                      <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                      <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-1">
                         {product.name}
-                      </h4>
-                      <p className="text-sm text-gray-500 mb-6 line-clamp-2">
+                      </h3>
+                      <p className="text-gray-500 text-xs mb-6 line-clamp-2 leading-relaxed">
                         {product.description}
                       </p>
                       <button className="w-full py-3 rounded-xl bg-gray-50 text-gray-700 text-sm font-bold flex items-center justify-center space-x-2 group-hover:bg-blue-600 group-hover:text-white transition-all">
@@ -847,7 +855,7 @@ const ProductsPage = () => {
   );
 };
 
-const AboutPage = () => (
+const AboutPhilosophy = () => (
   <div className="pt-20 min-h-screen bg-white">
     {/* About Hero */}
     <section className="relative py-24 bg-blue-900 text-white overflow-hidden">
@@ -865,7 +873,7 @@ const AboutPage = () => (
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">關於我們 About Us</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">品牌理念 Philosophy</h1>
           <p className="text-xl md:text-2xl font-light text-blue-100 max-w-3xl mx-auto leading-relaxed">
             寶德保健世家 Bode 品質代名詞
           </p>
@@ -873,7 +881,7 @@ const AboutPage = () => (
       </div>
     </section>
 
-    {/* New Top Section: Sustainable Quality */}
+    {/* Sustainable Quality Section */}
     <section className="py-24 bg-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
@@ -938,7 +946,7 @@ const AboutPage = () => (
     </section>
 
     {/* Bode Beauté Skin Care Section */}
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           <div className="lg:w-1/2">
@@ -953,15 +961,12 @@ const AboutPage = () => (
               <p>
                 Bode Beauté 寶麗致力於高科技護膚產品之開發，在不斷研發的專屬實驗室，擁有許多世界專利，產品使用的 Vegicaps® 和 Microsponge® 為最新專利科技，運用在保養品上，讓你感受極緻專業的保養品。
               </p>
-              <p>
-                Bode Beauté 寶麗軟膠囊是用獨特的 Vegicaps® 包材、封裝技術。Vegicaps® 只用植物性的原料製作，沒有任何動物殘留，讓您用得更安心。
-              </p>
-              <p>
-                無菌真空包裝技術，完整保存保養品的活性，讓每顆膠囊就像一瓶新開的保養品一樣，不會遭到外界汙染或氧化。
-              </p>
-              <p>
-                Bode 的製造廠在生產過程的每一步驟，都嚴格要求，達到最高標準，其製造過程都在乾淨的無塵環境裡使用先進的現代設備製造，並通過歐盟以及美國 FDA 的認可，因此保證每一顆軟膠囊的品質都是最好的。
-              </p>
+            </div>
+            <div className="mt-10">
+              <Link to="/products?category=Skin Care" className="inline-flex items-center px-8 py-4 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">
+                <span>瀏覽美膚系列產品</span>
+                <ChevronRight size={20} className="ml-2" />
+              </Link>
             </div>
           </div>
           <div className="lg:w-1/2">
@@ -976,8 +981,83 @@ const AboutPage = () => (
       </div>
     </section>
 
-    {/* Softgel Advantages Section */}
-    <section className="py-24 bg-gray-50">
+    {/* Sub-pages Previews */}
+    <section className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold text-gray-900">更多關於寶德</h2>
+          <div className="w-20 h-1 bg-blue-600 mx-auto mt-4"></div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* Softgel Preview */}
+          <Link to="/about/softgel" className="group relative overflow-hidden rounded-[3rem] aspect-[16/9] shadow-xl">
+            <img 
+              src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop" 
+              alt="Softgel" 
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-900/40 to-transparent flex flex-col justify-end p-10">
+              <h4 className="text-2xl font-bold text-white mb-2">軟膠囊優勢</h4>
+              <p className="text-blue-100 mb-6 line-clamp-2">了解為什麼軟膠囊比傳統錠劑具備更高的生體可用率與吸收速率。</p>
+              <div className="flex items-center text-white font-bold">
+                <span>了解更多</span>
+                <ChevronRight size={20} className="ml-2 group-hover:translate-x-2 transition-transform" />
+              </div>
+            </div>
+          </Link>
+
+          {/* History Preview */}
+          <Link to="/about/history" className="group relative overflow-hidden rounded-[3rem] aspect-[16/9] shadow-xl">
+            <img 
+              src="https://images.unsplash.com/photo-1521791136064-7986c2923216?q=80&w=800&auto=format&fit=crop" 
+              alt="History" 
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-900/40 to-transparent flex flex-col justify-end p-10">
+              <h4 className="text-2xl font-bold text-white mb-2">寶德歷史</h4>
+              <p className="text-blue-100 mb-6 line-clamp-2">回顧林廷燦先生創立寶德的初衷，以及傳承半世紀的健康承諾。</p>
+              <div className="flex items-center text-white font-bold">
+                <span>了解更多</span>
+                <ChevronRight size={20} className="ml-2 group-hover:translate-x-2 transition-transform" />
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
+    </section>
+  </div>
+);
+
+const AboutSoftgel = () => (
+  <div className="pt-20 min-h-screen bg-white">
+    {/* Softgel Hero */}
+    <section className="relative py-24 bg-blue-900 text-white overflow-hidden">
+      <div className="absolute inset-0 opacity-20">
+        <img 
+          src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1920&auto=format&fit=crop" 
+          alt="Softgel Capsules" 
+          className="w-full h-full object-cover"
+          referrerPolicy="no-referrer"
+        />
+      </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">軟膠囊優勢 Softgel</h1>
+          <p className="text-xl md:text-2xl font-light text-blue-100 max-w-3xl mx-auto leading-relaxed">
+            比傳統錠劑或硬膠囊吸收度更高
+          </p>
+        </motion.div>
+      </div>
+    </section>
+
+    {/* Softgel Advantages Content */}
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-sm font-bold tracking-widest uppercase mb-4" style={{ color: COLORS.secondary }}>Bode 軟膠囊</h2>
@@ -988,15 +1068,15 @@ const AboutPage = () => (
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+          <div className="bg-blue-50 p-8 rounded-3xl shadow-sm border border-blue-100">
             <div className="text-blue-600 mb-4 font-bold text-lg">‧ 較高的生體可用率</div>
             <p className="text-gray-500 text-sm">Better total bioavailability (AUC)</p>
           </div>
-          <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+          <div className="bg-blue-50 p-8 rounded-3xl shadow-sm border border-blue-100">
             <div className="text-blue-600 mb-4 font-bold text-lg">‧ 較快的吸收速率</div>
             <p className="text-gray-500 text-sm">More rapid rate of absorption (tmax)</p>
           </div>
-          <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+          <div className="bg-blue-50 p-8 rounded-3xl shadow-sm border border-blue-100">
             <div className="text-blue-600 mb-4 font-bold text-lg">‧ 較高的血液濃度</div>
             <p className="text-gray-500 text-sm">Higher blood levels (Cmax)</p>
           </div>
@@ -1034,8 +1114,36 @@ const AboutPage = () => (
         </div>
       </div>
     </section>
+  </div>
+);
 
-    {/* Bode History Section */}
+const AboutHistory = () => (
+  <div className="pt-20 min-h-screen bg-white">
+    {/* History Hero */}
+    <section className="relative py-24 bg-blue-900 text-white overflow-hidden">
+      <div className="absolute inset-0 opacity-20">
+        <img 
+          src="https://images.unsplash.com/photo-1521791136064-7986c2923216?q=80&w=1920&auto=format&fit=crop" 
+          alt="History" 
+          className="w-full h-full object-cover"
+          referrerPolicy="no-referrer"
+        />
+      </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">寶德歷史 History</h1>
+          <p className="text-xl md:text-2xl font-light text-blue-100 max-w-3xl mx-auto leading-relaxed">
+            傳承半世紀的健康承諾
+          </p>
+        </motion.div>
+      </div>
+    </section>
+
+    {/* History Content */}
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-16">
@@ -1105,7 +1213,10 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<ProductsPage />} />
-            <Route path="/about" element={<AboutPage />} />
+            <Route path="/about" element={<AboutPhilosophy />} />
+            <Route path="/about/philosophy" element={<AboutPhilosophy />} />
+            <Route path="/about/softgel" element={<AboutSoftgel />} />
+            <Route path="/about/history" element={<AboutHistory />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/contact" element={<ContactPage />} />
